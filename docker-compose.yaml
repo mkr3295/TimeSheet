@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+
+  backend:
+    build: ./server
+    container_name: backend
+
+    ports:
+      - "4000:4000"
+
+    volumes:
+      - ./server/data.db:/app/data.db
+
+    restart: unless-stopped
+
+  frontend:
+    build: ./client
+
+    container_name: frontend
+
+    ports:
+      - "5173:5173"
+
+    depends_on:
+      - backend
+
+    restart: unless-stopped
