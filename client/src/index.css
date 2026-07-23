@@ -1,0 +1,495 @@
+/* ==========================================================================
+   Punch — design tokens
+   Palette:  ink #14181C · paper #EEF1F0 · card #FFFFFF
+             amber #E2A63B (active/live) · teal #2F6F62 (success/secondary)
+             rust  #C1443B (danger)
+   Type:     IBM Plex Sans (UI text) · IBM Plex Mono (anything that counts:
+             the live timer, hour totals, dates)
+   Signature: the punch button — a chunky, physical time-clock button with
+             a pressed state and an amber glow while a shift is running.
+   ========================================================================== */
+
+:root {
+  --ink: #14181c;
+  --ink-soft: #3a4148;
+  --ink-faint: #6b747c;
+  --paper: #eef1f0;
+  --card: #ffffff;
+  --line: #d7dcda;
+  --amber: #e2a63b;
+  --amber-deep: #b9822a;
+  --teal: #2f6f62;
+  --teal-deep: #234f45;
+  --rust: #c1443b;
+
+  --font-ui: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
+  --shadow-card: 0 1px 2px rgba(20, 24, 28, 0.04), 0 8px 24px rgba(20, 24, 28, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-ui);
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+}
+
+a {
+  color: var(--teal-deep);
+}
+
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* --- Layout shells -------------------------------------------------- */
+
+.auth-shell {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 36px 32px;
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.brand-mark {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--amber);
+  display: inline-block;
+}
+
+.brand-name {
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+}
+
+.auth-card h1 {
+  font-size: 22px;
+  margin: 18px 0 4px;
+  letter-spacing: -0.01em;
+}
+
+.auth-card .sub {
+  color: var(--ink-faint);
+  font-size: 14px;
+  margin: 0 0 24px;
+}
+
+.field {
+  margin-bottom: 16px;
+}
+
+.field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+
+.field input {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.field input:focus {
+  border-color: var(--teal);
+  background: var(--card);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 12px 18px;
+  cursor: pointer;
+  transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.15s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  width: 100%;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn-primary:hover {
+  background: #262c32;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+}
+
+.btn-ghost:hover {
+  background: var(--paper);
+}
+
+.form-error {
+  background: #fbeceb;
+  color: var(--rust);
+  border: 1px solid #f0c7c3;
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--ink-faint);
+}
+
+/* --- App shell -------------------------------------------------------- */
+
+.app-shell {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 28px;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+}
+
+.topbar-user {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.topbar-user span {
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.main {
+  flex: 1;
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+  display: grid;
+  gap: 24px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 28px;
+}
+
+.card h2 {
+  margin: 0 0 4px;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+}
+
+.card .card-sub {
+  margin: 0 0 20px;
+  color: var(--ink-faint);
+  font-size: 13px;
+}
+
+/* --- Punch button (signature element) ---------------------------------- */
+
+.punch-panel {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.punch-btn {
+  position: relative;
+  width: 148px;
+  height: 148px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  color: var(--paper);
+  background: linear-gradient(180deg, #262c32 0%, var(--ink) 100%);
+  box-shadow: 0 6px 0 #05070a, 0 10px 18px rgba(20, 24, 28, 0.25);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.punch-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #05070a, 0 4px 10px rgba(20, 24, 28, 0.25);
+}
+
+.punch-btn.is-active {
+  background: linear-gradient(180deg, #f0b955 0%, var(--amber) 100%);
+  color: #2a1c04;
+  box-shadow: 0 6px 0 var(--amber-deep), 0 0 0 8px rgba(226, 166, 59, 0.18),
+    0 10px 24px rgba(226, 166, 59, 0.35);
+  animation: glow 2.4s ease-in-out infinite;
+}
+
+.punch-btn.is-active:active {
+  box-shadow: 0 2px 0 var(--amber-deep), 0 0 0 8px rgba(226, 166, 59, 0.18);
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 6px 0 var(--amber-deep), 0 0 0 8px rgba(226, 166, 59, 0.18),
+      0 10px 24px rgba(226, 166, 59, 0.35);
+  }
+  50% {
+    box-shadow: 0 6px 0 var(--amber-deep), 0 0 0 12px rgba(226, 166, 59, 0.12),
+      0 10px 28px rgba(226, 166, 59, 0.45);
+  }
+}
+
+.punch-status {
+  display: grid;
+  gap: 6px;
+}
+
+.punch-status .state {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+}
+
+.punch-status .state.live {
+  color: var(--amber-deep);
+}
+
+.punch-timer {
+  font-family: var(--font-mono);
+  font-size: 38px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+
+.punch-note-field {
+  margin-top: 14px;
+  max-width: 320px;
+}
+
+/* --- Week summary --------------------------------------------------- */
+
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  align-items: end;
+  height: 140px;
+  margin-bottom: 12px;
+}
+
+.week-bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  gap: 6px;
+}
+
+.week-bar {
+  width: 100%;
+  max-width: 32px;
+  background: var(--teal);
+  border-radius: 4px 4px 0 0;
+  min-height: 3px;
+}
+
+.week-bar.today {
+  background: var(--amber);
+}
+
+.week-bar-label {
+  font-size: 11px;
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+}
+
+.week-total {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink-soft);
+  text-align: right;
+}
+
+.week-total strong {
+  color: var(--ink);
+  font-size: 15px;
+}
+
+/* --- Entry list ------------------------------------------------------- */
+
+.entry-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+
+.entry-row:first-child {
+  border-top: none;
+}
+
+.entry-date {
+  font-weight: 600;
+}
+
+.entry-note {
+  color: var(--ink-faint);
+  font-size: 13px;
+}
+
+.entry-duration {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--teal-deep);
+  font-weight: 600;
+}
+
+.entry-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.icon-btn {
+  border: 1px solid var(--line);
+  background: var(--card);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--ink-soft);
+}
+
+.icon-btn:hover {
+  background: var(--paper);
+}
+
+.icon-btn.danger {
+  color: var(--rust);
+  border-color: #f0c7c3;
+}
+
+.empty-state {
+  color: var(--ink-faint);
+  font-size: 14px;
+  padding: 12px 0;
+}
+
+/* --- Manual entry form --------------------------------------------- */
+
+.manual-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.manual-form .field-wide {
+  grid-column: 1 / -1;
+}
+
+.manual-form .actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+@media (max-width: 560px) {
+  .manual-form {
+    grid-template-columns: 1fr;
+  }
+  .entry-row {
+    grid-template-columns: 1fr auto;
+    row-gap: 4px;
+  }
+  .entry-actions {
+    grid-column: 2;
+  }
+}
